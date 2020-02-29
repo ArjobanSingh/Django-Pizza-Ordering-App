@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}
+   Login
+{% endblock %}
+
+{% block main %}
+  
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="login-form">
+    <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        <h2 class="text-center">Log in</h2>
+        <p class="hint-text">Have an account? Login than.</p>
+        <div class="form-group">
+            <input type="text" autocomplete="off" class="form-control" placeholder="Username" name="l_username" required="required">
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" placeholder="Password" name="l_password" required="required">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block">Log in</button>
+        </div>
+    </form>
+    <div id="invalid">
+        {% for message in messages %}
+        <h3>{{message}}</h3>
+        {% endfor %}
+    </div>
+</div>
+
+    </div>
+  </div>
+  </div>
+{% endblock %}

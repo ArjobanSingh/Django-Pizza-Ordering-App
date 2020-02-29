@@ -1,0 +1,150 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block title %}
+   Main
+{% endblock %}
+
+{% block cart %}
+<li class="nav-item">
+  <a class="nav-link" href="{% url 'cart' %}">
+    {% if len > 0 %}
+    Cart[{{len}}]
+    {% else %}
+    Cart
+    {% endif %}
+  </a>
+  </li>
+
+  <li class="nav-item">
+      <a class="nav-link" href="{% url 'orders' %}">Orders
+      </a>
+      </li>
+ {% endblock %} 
+
+{% block main %}
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6" id="#main_pizza">
+                <div class="pizza-title-box">
+                <h1 class="title_items">Pizzas</h1>
+                <p>Special Pizza's toppings:
+                    Pepperoni, Spinach, Ham, Onions, Artichoke</p>
+                <hr>
+              </div>
+            <div class="main_box">
+                <h3>Name</h3>
+                <h3>Small</h3>
+                <h3>Large</h3>
+            {% for pizza in pizzas %}
+              <h5 class="child-title" id="{{ pizza.name }}">{{ pizza.name }}</h5>
+                      <button class= "customize btn btn-success"  id="small_Pizza{{ pizza.id }}">${{pizza.small_price}}</button>
+                      <button class="customize btn btn-success" id="large_Pizza{{ pizza.id }}">${{pizza.large_price}}</button>
+                
+               {% endfor %} 
+               <hr>
+            </div>
+            
+                
+            <br>
+
+            <div class="pizza-title-box">
+                <h1 class="title_items">Dinner Platters</h1>
+                <p>Our Delicious Dinner Platters are as:</p>
+                <hr>
+              </div>
+            <div class="main_box">
+                <h3>Name</h3>
+                <h3>Small</h3>
+                <h3>Large</h3>
+                {% for dinner in dinners %}
+                <h5 class="child-title" id="{{ dinner.name }}">{{ dinner.name }}</h5>
+                <button class= "customize btn btn-success"  id="small_Dinner{{ dinner.id }}">${{dinner.small_price}}</button>
+                <button class="customize btn btn-success" id="large_Dinner{{ dinner.id }}">${{dinner.large_price}}</button>
+                
+               {% endfor %} 
+               <hr>
+            </div>
+            <br>
+
+            <div class="pizza-title-box">
+                <h1 class="title_items">Pasta</h1>
+                <p>Our Delicious Pastas are as:</p>
+                <hr>
+              </div>
+            <div class="two_col_box">
+                <h3>Name</h3>
+                <h3>Price</h3>
+                {% for pasta in pastas %}
+                <h5 class="child-title" id="{{ pasta.name }}">{{ pasta.name }}</h5>
+                <button class= "customize btn btn-success"  id="pasta_{{ pasta.id }}">${{pasta.price}}</button>
+                
+               {% endfor %} 
+               <hr>
+            </div>
+            <br>
+
+        </div>
+
+        <div class="col-md-6" id="main_others">
+
+            <div class="pizza-title-box">
+                <h1 class="title_items">Salads</h1>
+                <p>Salads to make delicious food more delicious:</p>
+                <hr>
+              </div>
+            <div class="two_col_box">
+                <h3>Name</h3>
+                <h3>Price</h3>
+                {% for salad in salads %}
+                <h5 class="child-title" id="{{ salad.name }}">{{ salad.name }}</h5>
+                <button class= "customize btn btn-success"  id="salad_{{ salad.id }}">${{salad.price}}</button>
+                
+               {% endfor %} 
+               <hr>
+            </div>
+            <br>
+
+            <div class="pizza-title-box">
+                <h1 class="title_items">Subs</h1>
+                <p>Are you in a hurry? Try our subs than..</p>
+                <hr>
+              </div>
+            <div class="main_box">
+                <h3>Name</h3>
+                <h3>Small</h3>
+                <h3>Large</h3>
+                {% for sub in subs %}
+                <h5 class="child-title" id="{{ sub.name }}">{{ sub.name }}</h5>
+                {% if sub.small_price > 0 %}
+                <button class= "customize btn btn-success"  id="small_Sub{{ sub.id }}">${{sub.small_price}}</button>
+                <button class="customize btn btn-success" id="large_Sub{{ sub.id }}">${{sub.large_price}}</button>
+                {% else %}
+                <div></div>
+                <button class="customize btn btn-success" id="large_Sub{{ sub.id }}">${{sub.large_price}}</button>
+                {% endif %}
+               {% endfor %} 
+               <hr>
+            </div>
+
+        </div>
+    </div>
+    <div class="bg_mymodal">
+      <div class="mymodal_content">
+        <form action="{% url 'cart' %}" method="post" id="form_1">{% csrf_token %}
+          <div id="form_contents">
+          </div>
+          <div id="final_price">
+          </div>
+          <input class="my_input btn btn-primary" type="submit" name="inputest" value="Add to Cart" id="enter">
+        </form>
+        <button class="my_input btn btn-warning" id="cancel">Cancel</button>
+      </div>
+  </div>
+</div>
+<script src="{% static 'orders/orders.js' %}"></script>
+
+{% endblock %}

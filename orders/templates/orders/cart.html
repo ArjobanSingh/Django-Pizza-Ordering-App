@@ -1,0 +1,104 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block cart %}
+<li class="nav-item">
+  <a class="nav-link" href="{% url 'cart' %}">
+        {% if len > 0 %}
+        Cart[{{len}}]
+        {% else %}
+        Cart
+        {% endif %}
+  </a>
+  </li>
+
+  <li class="nav-item">
+        <a class="nav-link" href="{% url 'orders' %}">Orders
+        </a>
+        </li>
+ {% endblock %} 
+
+{% block main %}
+<h3 id="your_cart">Your Cart</h3>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8">
+          {% if len > 0 %}
+            {% for cart in carts %}
+            <div id="all_cart_data">
+                <div class={{cart.user_id}} id={{cart.id}}>
+                    <div class="row">
+                        <div class="col-md-7">
+                                <div class="order_contents"><h5>{{cart.order_contents}}</h5></div>
+                                <br>
+                                
+                        </div>
+                        <div class="col-md-3">
+                            <div class="order_price"><h5>${{cart.total_price}}</h5></div>
+                            <br>
+                        </div>
+                        <div class="col-md-2">
+                            <button  id = "{{cart.id}}" class='delete btn btn-danger'>Delete</button>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% if total > 0 %}
+            <div><h3>TOTAL PRICE OF ALL ITEMS:   ${{total}}</h3></div>
+            {% endif %}
+            {% else %}
+            <div id="no_items">
+                <h4>No items added to cart Yet</h4>
+            </div>
+            {% endif %}
+            <a id = "add_more" href="{% url 'main_app' %}"><b> Add items to cart </b></a>
+        </div>
+ 
+        <div class="col-md-4">
+          <div class="conf_order">
+            {% if len > 0 %}
+            <div id="order_button">
+                <h4>Order Total: ${{total}}</h4>
+                <h6>Place your order now</h6>
+                <br>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                 Confirm Order
+                </button>
+            </div>
+            {% else %}
+              <div>
+                  <h4>No items to order</h4>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+        
+    </div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Total: ${{total}}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              You are just one click away from placing this delecious order.
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <form action="{% url 'orders' %}" method="post"> {% csrf_token %}
+                  <input type="submit" class="btn btn-primary" value="Place Order">
+              </form>
+            </div>
+          </div>
+        </div>
+</div>
+
+<script src="{% static 'orders/orders.js' %}"></script>
+{% endblock %}

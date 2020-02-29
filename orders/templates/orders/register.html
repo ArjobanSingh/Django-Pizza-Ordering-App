@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+
+<div class="container-fluid">
+        <div class="row">
+
+            <div class="col-md-12">
+              <div class="signup-form">
+            <form action="{% url 'registeration' %}" method="post">
+                {% csrf_token %}
+                <h2 id="register_head">Register</h2>
+                <p class="hint-text-reg">Create your account. It's free and only takes a minute.</p>
+                        <div class="form-group">
+                  <input type="text" class="form-control reg" autocomplete="off" name="first_name" id="first_name" placeholder="FirstName" required="required">
+                </div>
+                <div class="form-group">
+                        <input type="text" class="form-control reg" autocomplete="off" name="last_name" id="last_name" placeholder="LastName" required="required">
+                      </div>
+                <div class="form-group">
+                    <input type="text" class="form-control reg" autocomplete="off" name="user_name" id="user_name" placeholder="UserName" required="required">
+                </div>
+                <div class="form-group">
+                        <input type="email" class="form-control reg" autocomplete="off" name="email" id="email" placeholder="Email" required="required">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control reg" name="password" id="password" placeholder="Password" required="required">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control reg" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required="required">
+                </div>
+      
+                <div class="form-group">
+                    <button type="submit" id="register" class="btn btn-success btn-lg btn-block">Register Now</button>
+                </div>
+            </form>
+            <div>
+                    {% for message in messages %}
+                    <h3>{{message}}</h3>
+                    {% endfor %}
+                </div>
+        </div>
+
+        </div>
+        </div>
+        </div>
+
+
+        
+{% endblock %}

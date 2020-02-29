@@ -1,0 +1,65 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}
+  Orders
+{% endblock %}
+
+{% block cart %}
+
+<li class="nav-item">
+  <a class="nav-link" href="{% url 'cart' %}">
+    {% if len > 0 %}
+    Cart[{{len}}]
+    {% else %}
+    Cart
+    {% endif %}
+  </a>
+  </li>
+
+  <li class="nav-item">
+      <a class="nav-link" href="{% url 'orders' %}">Orders
+      </a>
+      </li>
+ {% endblock %} 
+
+ {% block main %}
+<div class="container-fluid">
+    <div class="row">
+      <div class="orders_box">
+          {% if not orders %}
+          <h1 class="display-4">No orders placed yet </h1>
+          <p class="lead">Place order..</p>
+          <a class="btn btn-primary btn-lg" href="{% url 'main_app' %}" role="button">Place Order</a>
+        
+          {% else %}
+          
+          {% for order in orders %}
+
+              <h1 class="display-4">Order Details</h1>
+              <p class="lead">Your order is currently in Que. Will get completed shortly. Patience is the key..</p>
+              {% if order.o_status is False %}
+              <div class="alert alert-primary" role="alert">
+                  ORDER IS IN QUE
+                </div>
+                {% else %}
+                <div class="alert alert-primary" role="alert">
+                  ORDER Completed
+                </div>
+                <div>
+                  <button  id = "{{order.id}}" class='delete_o_history btn btn-danger'>Delete order history</button>
+                </div>
+                {% endif %}
+                <br>
+              <h5 >${{order.order_price}}</h5>
+              <p>{{order.order_details}}</p>
+              <hr class="style2">
+                <br>
+          {% endfor %} 
+          <br>
+          {% endif %}
+      </div>
+    </div>
+</div>
+
+<script src="{% static 'orders/orders.js' %}"></script>
+{% endblock %}

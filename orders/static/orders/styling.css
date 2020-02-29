@@ -1,0 +1,175 @@
+.bg_mymodal{
+  width: 100%;
+  height:100%;
+  background-color: rgba(0,0,0,0.7);
+  position:fixed;
+  top: 0;
+  display: none;
+  justify-content: center;
+  
+}
+  
+  .mymodal_content{
+
+    position: fixed;
+    top: 35%;
+    background-color: wheat;
+    border-radius: 4px;
+    text-align: center;
+    padding: 20px ;
+  }
+
+
+  #my-input {
+    align-self: center;
+    margin: 15px auto;
+      display: block;
+      width: 50%;
+      padding: 8px;
+      border: 1px solid gray;
+  }
+
+  body {
+ 
+    background: url("/static/orders/real_pizza.jpg")  no-repeat fixed;
+    background-size: 100% 100% ;
+    
+   }
+
+   .main_box{
+    
+    font-size: 15px;
+    width: 100%;
+    background-color: rgba(0,0,0,0.8);
+    color:chartreuse;
+    display: grid;
+    grid-template-columns: 1.5fr 0.75fr 0.75fr; 
+    align-items: center;
+    justify-items: center;
+    grid-gap: 20px;
+   }
+
+   .bottom {
+    border-bottom: 5px solid #ccc !important;
+  }
+
+   .orders_box{
+  
+    width: 100%;
+    background-color: rgba(0,0,0,0.8);
+    color:chartreuse;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+   }
+
+   .two_col_box{
+    font-size: 15px;
+    width: 100%;
+    background-color: rgba(0,0,0,0.8);
+    color:chartreuse;
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    align-items: center;
+    justify-items: center;
+    grid-gap: 20px;
+   }
+
+  .pizza-title-box{
+
+    width: 100%;
+    background-color: rgba(0,0,0,0.8);
+    color: #0CF3DC;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 1fr; 
+    grid-template-rows: 50px 25px;
+    align-items: center;
+    justify-items: center;
+    grid-gap: 10px;
+  }
+
+  .col-md-8, .conf_order{
+    background-color: rgba(0,0,0,0.8);
+    font-size: 15px;
+    color:chartreuse;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+  }
+
+  .login-form{
+    background-color: rgba(0,0,0,0.8);
+    font-size: 25px;
+    color:chartreuse;
+    margin: 7% 25% 7% 25%;
+    font-size: 15px;
+    padding: 5% 10% 5% 10%;
+  }
+
+  #invalid, .hint-text{
+    padding-left: 20%; 
+  }
+  #register_head{
+    padding-left:25%; 
+  }
+
+  .myname{
+    padding-left: 44%;
+  }
+
+  .my_nav{
+    width: 100%;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0; 
+  }
+
+
+  .signup-form{
+    background-color: rgba(0,0,0,0.8);
+    font-size: 15px;
+    color:chartreuse;
+    margin: 2% 25% 2% 25%;
+    padding: 1% 13% 1% 13%;
+  }
+
+  #your_cart{
+    background-color: rgba(0,0,0,0.8);
+    color:chartreuse;
+    padding-left: 30%;
+  }
+  #no_items{
+    padding-left: 30% ;
+  }
+
+  .vertical { 
+    border-left: 6px solid black; 
+    height: 100%; 
+    position:absolute; 
+    left: 95%; 
+    padding-top: 20px;
+    
+} 
+
+#add_more{
+  font-size: 35px;
+  padding-left: 30%; 
+}
+
+.nav-link{
+  background-color: rgba(0,0,0,0.8);
+  color:white !important;
+}
+
+.wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+ 
+}
+
+.footer, .push {
+  height: 20px; /* .push must be the same height as .footer */
+}

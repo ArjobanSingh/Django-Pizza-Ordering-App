@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %}
+   Owner Page
+{% endblock %}
+
+{% block cart %}
+<li class="nav-item">
+  <a class="nav-link" href="{% url 'cart' %}">
+        {% if len > 0 %}
+        Cart[{{len}}]
+        {% else %}
+        Cart
+        {% endif %}
+  </a>
+  </li>
+
+  <li class="nav-item">
+        <a class="nav-link" href="{% url 'orders' %}">Orders
+        </a>
+        </li>
+ {% endblock %} 
+ 
+ {% block main %}
+<div class="container-fluid">
+      <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-5">
+                  {% for e in even %}
+                  {% if e.o_status is False %}
+                  <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+                              <div class="card-header">Order</div>
+                              <div class="card-body">
+                                <h5 class="card-title">By {{e.user_name}}</h5>
+                                <h5 class="card-price">${{e.order_price}}</h5>
+                                <p class="card-text">{{e.order_details}}.</p>
+                              </div>
+                              <div class="card-footer">
+                                          <button class="complete_order" id="{{e.id}}">Complete order</button>
+                              </div>
+                            </div>
+                  {% endif %}          
+                  {% endfor %}
+            </div>
+            <div class="col-md-5">
+                        {% for o in odd %}
+                        {% if o.o_status is False %}
+                        <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+                                    <div class="card-header">Order</div>
+                                    <div class="card-body">
+                                      <h5 class="card-title">By {{o.user_name}}</h5>
+                                      <h5 class="card-price">${{o.order_price}}</h5>
+                                      <p class="card-text">{{o.order_details}}.</p>
+                                    </div>
+                                    <div class="card-footer">
+                                          <button class="complete_order" id="{{o.id}}">Complete order</button>
+                                          </div>
+                                  </div>
+                                  {% endif %}           
+                        {% endfor %}
+            </div>
+            <div class="col-md-1"></div>
+      </div>
+</div>
+
+<script src="{% static 'orders/orders.js' %}"></script>
+ {% endblock %}
