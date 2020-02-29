@@ -1,6 +1,6 @@
 # Project 3
 
-To check the demonstartion of this project, click the link below
+To check the demonstartion of this project, click this link
 https://www.youtube.com/watch?v=SnHRSHKd-o0
 
 Web Programming with Python and JavaScript
